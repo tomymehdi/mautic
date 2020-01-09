@@ -262,8 +262,6 @@ class InstallController extends CommonController
      */
     public function finalAction()
     {
-        // Manually set this env varabile on kubernetes env varabiles to run or not run wizard
-        return getenv('RUN_WIZARD');
         $session = $this->get('session');
 
         // We're going to assume a bit here; if the config file exists already and DB info is provided, assume the app is installed and redirect
@@ -322,6 +320,10 @@ class InstallController extends CommonController
      */
     private function checkIfInstalled()
     {
+
+        // Manually set this env varabile on kubernetes env varabiles to run or not run wizard
+        return getenv('CHECK_IF_INSTALLED');
+
         // If the config file doesn't even exist, no point in checking further
         $localConfigFile = $this->get('mautic.helper.paths')->getSystemPath('local_config');
         if (!file_exists($localConfigFile)) {
