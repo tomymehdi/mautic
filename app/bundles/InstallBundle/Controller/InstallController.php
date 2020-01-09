@@ -262,6 +262,8 @@ class InstallController extends CommonController
      */
     public function finalAction()
     {
+        // Manually set this env varabile on kubernetes env varabiles to run or not run wizard
+        return getenv('RUN_WIZARD');
         $session = $this->get('session');
 
         // We're going to assume a bit here; if the config file exists already and DB info is provided, assume the app is installed and redirect
